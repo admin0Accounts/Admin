@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المنتج</title>
+    <style>
+        /* تنسيق الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* شريط علوي ثابت */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #222;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .sticky-header .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffc107;
+        }
+
+        .sticky-header .nav-button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .sticky-header .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* تنسيق محتوى المنتج */
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        .content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            transform: translateY(20px);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            animation: fadeIn 2s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            text-align: justify; /* يجعل النص يبدو كـ مقال طويل */
+        }
+
+        .product-details h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: rgb(255, 255, 255); /* تعديل اللون ليظهر بوضوح */
+        }
+
+        .product-details p {
+            font-size: 1.1rem;
+            line-height: 1.8; /* زيادة المسافة بين الأسطر */
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #28a745;
+            margin: 20px 0;
+        }
+
+        .buy-button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 2.5s forwards;
+            transform: translateY(20px);
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* نافذة منبثقة احترافية */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #212529;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            color: #fff;
+            text-align: right;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffc107;
+        }
+
+        .modal-content label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 1rem;
+        }
+
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .modal-content textarea {
+            resize: vertical;
+        }
+
+        .submit-button, .close-button {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button {
+            background-color: #007bff;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        .close-button {
+            background-color: #dc3545;
+            margin-left: 10px;
+        }
+
+        .close-button:hover {
+            background-color: #c82333;
+        }
+
+        /* التفاعل مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .product-details h1 {
+                font-size: 1.8rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+
+            .product-details p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            /* جعل النص يعرض بشكل أفقي للمنتجات */
+            .product-details {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            /* جعل الصورة تأخذ العرض كاملاً */
+            .content img {
+                width: 100%;
+            }
+        }
+
+        /* التفاعل مع الشاشات الكبيرة */
+        @media (min-width: 1200px) {
+            .content {
+                grid-template-columns: repeat( 1fr);
+            }
+        }
+
+        /* الأنيميشن */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- شريط علوي ثابت -->
+    <div class="sticky-header">
+        <div class="logo">MyPortfolio</div>
+        <a href="index.html" class="nav-button">الرئيسية</a>
+    </div>
+
+    <!-- محتوى المنتج -->
+    <div class="content">
+        <img id="productImage" src="صورة واتساب بتاريخ 1446-06-21 في 20.27.16_613c0ca7.jpg" alt="صورة المنتج">
+        <div class="product-details">
+            <h1 id="productName">Step One</h1>
+            <p>في هدوء الليل وسكونه، تجد نفسك أمام لوحة فارغة تنتظر أن تُلونها بألوان أفكارك وأحلامك.
+                الحياة ليست قالبًا واحدًا للجميع، بل هي قماش واسع يمكن أن ترسم عليه ما تشاء ، توقف عن تقليد الآخرين، وابدأ في تشكيل عالمك الخاص، عالم ينبض بطموحاتك وأهدافك ، لا تنتظر أن تأتي الفرص إليك، بل اصنعها بنفسك
+                كل خطوة تخطوها، وكل قرار تتخذه، هو جزء من لوحة حياتك الفريدة ، اختر ألوانك بحكمة، واجعل من كل لحظة إبداعًا لا يُنسى.</p>
+            <div class="product-price">100.00$</div>
+            <a href="#" class="buy-button" onclick="openModal()">طلب الآن</a>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <h2>إكمال الطلب</h2>
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" required>
+            <label for="phone">رقم الهاتف:</label>
+            <input type="tel" id="phone" pattern="[0-9]*" required oninput="validatePhone()" maxlength="15">                    
+            <label for="address">العنوان:</label>
+            <input type="text" id="address" required>
+            <label for="quantity">عدد الكتب:</label>
+            <input type="number" id="quantity" required>
+            <button class="submit-button" onclick="sendOrder()">إرسال الطلب</button>
+            <button class="close-button" onclick="closeModal()">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        function validatePhone() {
+            const phoneInput = document.getElementById('phone');
+            phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+        }
+
+        function sendOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const quantity = document.getElementById('quantity').value;
+
+            if (!name || !phone || !address || !quantity) {
+                alert("يرجى تعبئة جميع الحقول!");
+                return;
+            }
+
+            const phoneNumber = phone.replace(/[^\d]/g, "");
+            const productName = document.getElementById('productName').textContent;
+            const productPrice = document.querySelector('.product-price').textContent;
+
+            const message = `*طلب جديد* 📦
+            
+            👤 *الاسم:* ${name}
+            📞 *رقم الهاتف:* ${phoneNumber}
+            📍 *العنوان:* ${address}
+            💵 *عدد الكتب:* ${quantity}
+            🛒 *اسم المنتج:* ${productName}
+            💰 *السعر:* ${productPrice}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappLink = `https://wa.me/201097244187?text=${encodedMessage}`;
+
+            window.open(whatsappLink, '_blank');
+        }
+    </script>
+</body>
+</html>
