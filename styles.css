@@ -17,7 +17,7 @@
   
   body {
     font-family: var(--font-family);
-    background-color: var(--bg-color);
+    background-color: #121212;
     color: var(--text-color);
     scroll-behavior: smooth;
     line-height: 1.6;
@@ -257,6 +257,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease-in-out;
     background-color: #121212;
+
     height: 350px;
     width: 100%;
     max-width: 400px;
@@ -374,6 +375,11 @@
     color: var(--primary-color);
   }
 /* Media Queries for Responsiveness */
+
+#My-Career{
+  background-color: #121212;
+
+}
 
 /* Large Devices (Desktops and above) */
 @media only screen and (min-width: 1200px) {
@@ -581,37 +587,16 @@
   background: linear-gradient(90deg, #f00, #ff7300);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 20px;
+  margin: 10px;
 }
 
 .text-box p {
   font-size: 1.4rem;
   line-height: 2;
   color: #ddd;
-  margin: 20px;
+  margin: 10px;
 }
 
-/* زر تفاعلي */
-.btn {
-  display: inline-block;
-  padding: 15px 40px;
-  font-size: 1.1rem;
-  color: #fff;
-  background: #4caf50;
-  border-radius: 8px;
-  text-decoration: none;
-  box-shadow: 0 5px 20px rgba(229, 9, 20, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: auto;
-  margin: 20px;
-  
-
-}
-
-.btn:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(229, 9, 20, 0.7);
-}
 
 /* الصورة */
 .image-box {
