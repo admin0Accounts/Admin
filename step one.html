@@ -42,7 +42,7 @@
     scroll-behavior: smooth;
     line-height: 1.6;
     overflow-x: hidden;
-    
+    padding: 0px 0px 0px;
     
   }
 
@@ -132,12 +132,13 @@ header .logo:hover {
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 60px 20px 50px;
 
 
         }
 
         .content img {
-            width: 95%;
+            width: 80%;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
@@ -278,6 +279,7 @@ header .logo:hover {
                 align-items: center;
                 flex-direction: column;
 
+
             }
 
 
@@ -287,6 +289,7 @@ header .logo:hover {
 
             .product-price {
                 font-size: 1.1rem;
+                padding: 0px 0px 0px;
             }
 
             .product-details p {
@@ -301,6 +304,7 @@ header .logo:hover {
             .product-details {
                 text-align: center;
                 margin-top: 20px;
+                padding: 0px 0px 0px;
             }
 
             /* جعل الصورة تأخذ العرض كاملاً */
@@ -308,6 +312,10 @@ header .logo:hover {
                 width: 70%;
                 
 
+            }
+            .content {
+
+                padding: 10px 20px 50px;
             }
     .header {
       padding: 12px 25px;
@@ -341,6 +349,7 @@ header .logo:hover {
             .nav-links a {
                 font-size: 20px;
             }
+
 
         }
 
@@ -422,13 +431,26 @@ header .logo:hover {
 
     .content{
         grid-template-columns: repeat( 1fr);
+        height: 100vh;
+        padding: 0px 0px 00px;
 
     }
     .content img{
-        margin-top: 10px;
         width: 80%;
     }
 
+    .inner-text p{
+        
+        padding: 0px 0px 0px;
+    }
+
+    .product-details h1{
+        padding: 0px 0px 0px;
+    }
+
+    .product-price{
+        padding: 0px 0px 0px;
+    }
 
   }
 
@@ -519,9 +541,8 @@ header .logo:hover {
         }
     }
 </script>
+            <div class="product-price">100.00 EGP</div> <a href="#" class="buy-button" onclick="openModal()">طلب الآن</a>
            
-            <div class="product-price">100.00 EGP</div>
-            <a href="#" class="buy-button" onclick="openModal()">طلب الآن</a>
         </div>
     </div>
 
