@@ -565,17 +565,16 @@ header .logo:hover {
     }
   
     .portfolio-grid {
+      grid-template-columns: 1fr; /* 1 column for very small screens */
       gap: 10px;
     }
   
     .header {
-      padding: 10px 20px;
-      display: flex;
-      flex-direction: column; /* ترتيب العناصر عموديًا */
-      align-items: center; /* توسيط العناصر أفقيًا */
-      justify-content: center; /* توسيط العناصر عموديًا */
-      padding: 20px 40px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      .header {
+        padding: 10px 20px;
+        display: flex;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
     
     }
   
