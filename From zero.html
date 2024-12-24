@@ -1,90 +1,156 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة المنتج</title>
-    <style>
-        /* تنسيق الأساسيات */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>Document</title>
+</head>
+<body>
+      <!-- Header Section: Navigation bar -->
+  <header class="header">
+    <div class="logo">My<span>Portfolio</span></div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    </nav>
+  </header>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+  
+  :root {
+    --primary-color: #4caf50;
+    --secondary-color: #ffa726;
+    --bg-color: #121212;
+    --text-color: #f5f5f5;
+    --light-gray: #333;
+    --font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    background-color: #121212;
+    color: var(--text-color);
+    scroll-behavior: smooth;
+    line-height: 1.6;
+    overflow-x: hidden;
+    height: 100vh;
+  }
 
-        body {
-            font-family: 'Tahoma', sans-serif;
-            background-color: #121212;
-            color: #fff;
-            overflow-x: hidden;
-        }
 
-        /* شريط علوي ثابت */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #222;
-            color: #fff;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
 
-        .sticky-header .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffc107;
-        }
+  
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 20px;  /* تم تقليل البادينج ليكون متناسب مع مختلف الأحجام */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    background-color: #222;
+    text-align: center;
 
-        .sticky-header .nav-button {
-            padding: 12px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #4caf50;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
+  }
 
-        .sticky-header .nav-button:hover {
-            background-color: #0056b3;
-        }
 
-        /* تنسيق محتوى المنتج */
-        .content {
+
+header .container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+header .logo:hover {
+    color: #ff6347;
+}
+
+  .logo {
+    font-size: 24px;  /* تم تقليل حجم الخط ليكون مناسبًا أكثر */
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;  /* تقليل الفجوات بين العناصر لتناسب الشاشات الصغيرة */
+  }
+  
+  .nav-links li {
+    margin: 0;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 16px;  /* تقليل حجم الخط ليكون أكثر ملائمة */
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+
+/* تنسيق محتوى المنتج */
+.content {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
             padding: 40px 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 50px auto;
             opacity: 0;
             animation: fadeIn 1.5s forwards;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+
         }
 
         .content img {
-            width: 100%;
+            width: 95%;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
             transform: translateY(20px);
             animation: slideIn 1s ease-out forwards;
+            margin-top: 30px;
         }
 
         .product-details {
-            display: flex;
             flex-direction: column;
             justify-content: flex-start;
             animation: fadeIn 2s forwards;
             opacity: 0;
-            transform: translateY(20px);
-            text-align: justify; /* يجعل النص يبدو كـ مقال طويل */
         }
 
         .product-details h1 {
@@ -207,20 +273,28 @@
         @media (max-width: 768px) {
             .content {
                 grid-template-columns: 1fr;
-                padding: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
             }
 
+
             .product-details h1 {
-                font-size: 1.8rem;
+                font-size: 1.1rem;
             }
 
             .product-price {
-                font-size: 1.5rem;
+                font-size: 1.1rem;
             }
 
             .product-details p {
                 font-size: 1rem;
                 line-height: 1.4;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
             }
 
             /* جعل النص يعرض بشكل أفقي للمنتجات */
@@ -231,8 +305,27 @@
 
             /* جعل الصورة تأخذ العرض كاملاً */
             .content img {
-                width: 100%;
+                width: 70%;
+                
+
             }
+    .header {
+      padding: 12px 25px;
+      display: flex;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    }
+  
+    .logo {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  
+    .nav-links a {
+      font-size: 16px;
+    }
+
+
         }
 
         /* التفاعل مع الشاشات الكبيرة */
@@ -240,6 +333,15 @@
             .content {
                 grid-template-columns: repeat( 1fr);
             }
+
+            .logo {
+                 font-size: 32px;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+            }
+
         }
 
         /* الأنيميشن */
@@ -261,27 +363,171 @@
             }
         }
 
-    </style>
-</head>
-<body>
-    <!-- شريط علوي ثابت -->
-    <div class="sticky-header">
-        <div class="logo">MyPortfolio</div>
-        <a href="index.html" class="nav-button">الرئيسية</a>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* Large Devices (Desktops and above) */
+
+  
+  
+  /* Tablets and Small Devices */
+  @media only screen and (max-width: 1024px) {
+  
+    .header {
+      padding: 15px 30px;
+    }
+  
+    .logo {
+      font-size: 28px;
+    }
+  
+    .nav-links a {
+      font-size: 18px;
+    }
+  }
+  
+  /* Extra Small Devices (Phones in Portrait) */
+  @media only screen and (max-width: 480px) {
+
+    .header {
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column; /* ترتيب العناصر عموديًا */
+      align-items: center; /* توسيط العناصر أفقيًا */
+      justify-content: center; /* توسيط العناصر عموديًا */
+      padding: 20px 40px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    }
+  
+    .logo {
+      font-size: 22px;
+    }
+  
+    .nav-links {
+      gap: 8px;
+    }
+  
+    .nav-links a {
+      font-size: 14px;
+    }
+
+    .content{
+        padding: 120px 20px 50px;
+        grid-template-columns: repeat( 1fr);
+
+    }
+    .content img{
+        width: 50px;
+    }
+
+
+  }
+
+
+
+
+
+  .container {
+            width: 80%;
+            margin: 50px auto;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+        }
+
+        .inner-text p {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007BFF;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #read-more:hover {
+            text-decoration: underline;
+        }
+
+
+
+  </style>
+
+
+ <!-- Header Section: Navigation bar -->
+ <header class="header">
+    <div class="logo">My<span>Portfolio</span></div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+
+    </ul>
+    </nav>
+  </header>
 
     <!-- محتوى المنتج -->
     <div class="content">
-        <img id="productImage" src="صورة واتساب بتاريخ 1446-06-22 في 19.08.16_0b367f31.jpg" alt="صورة المنتج">
+        <img id="productImage" src="from zero .jpg" alt="صورة المنتج">
         <div class="product-details">
             <h1 id="productName">From Zero</h1>
-            <p>تخيل لحظةً أنك تمسك بمفتاح حلمك الكبير، وأنت تتحرك من الظلام نحو النور، من الصفر إلى القمة
-                هذا هو الشعور الذي يعطيك كتاب From Zero
-               يأخذك برفق من عالم الإحباط والرتابة، ويضعك على مسار النجاح والتحقيق الذاتي.
-               مليء بالقصص الملهمة والأساليب العملية، يأخذك هذا الكتاب في رحلة لتحقيق أهدافك الكبيرة، سواء كنت تسعى لبناء عمل ناجح أو تطوير حياة شخصية مليئة بالتحديات والمكافآت.
-               بالإضافة إلى ذلك، يقدم From Zero تجارب وحكم من الحياة الحقيقية، تعلمك كيف تتغلب على الفشل، وتستمر في النمو والتطور رغم الصعوبات التي تواجهك.
-                إنه دليلك الموثوق والملهم في رحلتك نحو النجاح والتحقيق الذاتي."</p>
-            <div class="product-price">80.00$</div>
+            <div class="container">
+    <div class="inner-text">
+        <p id="text">
+            تخيل لحظةً أنك تمسك بمفتاح حلمك الكبير، وأنت تتحرك من الظلام نحو النور، من الصفر إلى القمة، هذا هو الشعور الذي يعطيك كتاب From Zero،
+            يأخذك برفق من عالم الإحباط والرتابة، ويضعك على مسار النجاح والتحقيق الذاتي. 
+
+            <span class="hidden" id="more-text">
+
+            مليء بالقصص الملهمة والأساليب العملية، يأخذك هذا الكتاب في رحلة لتحقيق أهدافك الكبيرة، سواء كنت تسعى لبناء عمل ناجح أو تطوير حياة شخصية مليئة بالتحديات والمكافآت.
+            إنه دليلك الموثوق في رحلتك نحو النجاح.  
+            </span>
+
+            <span id="read-more" onclick="toggleText()">عرض المزيد</span>
+        </p>
+       
+    </div>
+</div>
+
+<script>
+    function toggleText() {
+        var moreText = document.getElementById("more-text");
+        var readMore = document.getElementById("read-more");
+
+        if (moreText.style.display === "none" || moreText.classList.contains("hidden")) {
+            moreText.style.display = "inline";
+            moreText.classList.remove("hidden");
+            readMore.innerText = "عرض أقل";
+        } else {
+            moreText.style.display = "none";
+            moreText.classList.add("hidden");
+            readMore.innerText = "عرض المزيد";
+        }
+    }
+</script>
+           
+            <div class="product-price">80.00 EGP</div>
             <a href="#" class="buy-button" onclick="openModal()">طلب الآن</a>
         </div>
     </div>
@@ -347,5 +593,8 @@
             window.open(whatsappLink, '_blank');
         }
     </script>
+</body>
+</html>
+
 </body>
 </html>
